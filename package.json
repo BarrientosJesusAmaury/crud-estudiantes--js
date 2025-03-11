@@ -1,0 +1,12 @@
+{
+  "name": "crud-estudiante-",
+  "version": "1.0.0",
+  "description": "Este es un sistema de gestión de estudiantes basado en JavaScript que permite realizar operaciones CRUD desde la terminal.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
