@@ -7,5 +7,9 @@ export const Reportes = {
             const promedio = calificaciones.reduce((a, b) => a + b, 0) / calificaciones.length || 0;
             return { nombre: e.nombre, promedio, area: e.area };
         });
+    },
+
+    buscarEstudiante(criterio) {
+        return GestorEstudiantes.buscarEstudiante(criterio);
     }
 };
