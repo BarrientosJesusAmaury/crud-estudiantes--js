@@ -3,38 +3,36 @@ import { Estudiante } from "./Estudiante.js";
 export const GestorEstudiantes = {
     estudiantes: {},
 
-    crearEstudiante(nombre, edad, nivel) {
-        const estudiante = new Estudiante(nombre, edad, nivel);
+    crearEstudiante(nombre, edad, nivel, area, calificaciones) {
+        const estudiante = new Estudiante(nombre, edad, nivel, area, calificaciones);
         this.estudiantes[estudiante.id] = estudiante;
     },
 
     listarEstudiantes() {
-        if (Object.keys(this.estudiantes).length === 0) {
-            console.log("No hay estudiantes registrados.");
-        } else {
-            console.log("\nLista de estudiantes:");
-            for (let id in this.estudiantes) {
-                console.log(`${id}: ${this.estudiantes[id].nombre}, ${this.estudiantes[id].edad} años, Nivel: ${this.estudiantes[id].nivel}`);
-            }
-        }
+        return Object.values(this.estudiantes);
     },
 
-    actualizarEstudiante(id, nuevoNombre, nuevaEdad, nuevoNivel) {
+    buscarEstudiante(criterio) {
+        return Object.values(this.estudiantes).find(e => e.id === criterio || e.nombre.toLowerCase() === criterio.toLowerCase());
+    },
+
+    actualizarEstudiante(id, nuevoNombre, nuevaEdad, nuevoNivel, nuevaArea, nuevasCalificaciones) {
         if (this.estudiantes[id]) {
             let estudiante = this.estudiantes[id];
             estudiante.nombre = nuevoNombre;
             estudiante.edad = nuevaEdad;
             estudiante.nivel = nuevoNivel;
-        } else {
-            console.log("No se encontró el estudiante.");
-        }
+            estudiante.area = nuevaArea;
+            estudiante.calificaciones = { 
+                Matematicas: nuevasCalificaciones.Matematicas || estudiante.calificaciones.Matematicas,
+                Programacion: nuevasCalificaciones.Programacion || estudiante.calificaciones.Programacion,
+                Ciencias: nuevasCalificaciones.Ciencias || estudiante.calificaciones.Ciencias,
+                Lengua: nuevasCalificaciones.Lengua || estudiante.calificaciones.Lengua
+            };
+        } 
     },
 
     eliminarEstudiante(id) {
-        if (this.estudiantes[id]) {
-            delete this.estudiantes[id];
-        } else {
-            console.log("No se encontró el estudiante.");
-        }
+        delete this.estudiantes[id];
     }
 };
