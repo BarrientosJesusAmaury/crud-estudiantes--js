@@ -31,9 +31,25 @@ function agregarEstudiante() {
     rl.question("Nombre: ", (nombre) => {
         rl.question("Edad: ", (edad) => {
             rl.question("Nivel: ", (nivel) => {
-                GestorEstudiantes.crearEstudiante(nombre, parseInt(edad), nivel);
-                console.log("Estudiante agregado.");
-                menu();
+                rl.question("Área de estudio: ", (area) => {
+                    rl.question("Calificación Matemáticas: ", (mat) => {
+                        rl.question("Calificación Programación: ", (prog) => {
+                            rl.question("Calificación Ciencias: ", (cien) => {
+                                rl.question("Calificación Lengua: ", (len) => {
+                                    const calificaciones = {
+                                        Matematicas: parseInt(mat),
+                                        Programacion: parseInt(prog),
+                                        Ciencias: parseInt(cien),
+                                        Lengua: parseInt(len)
+                                    };
+                                    GestorEstudiantes.crearEstudiante(nombre, parseInt(edad), nivel, area, calificaciones);
+                                    console.log("Estudiante agregado.");
+                                    menu();
+                                });
+                            });
+                        });
+                    });
+                });
             });
         });
     });
@@ -65,5 +81,6 @@ function eliminarEstudiante() {
         menu();
     });
 }
+
 
 menu();
